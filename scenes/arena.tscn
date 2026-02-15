@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://uj2m18mlkkj6"]
+
+[ext_resource type="Script" uid="uid://bqh087hcsm6mb" path="res://scripts/arena.gd" id="1_wl4x5"]
+[ext_resource type="PackedScene" uid="uid://cb71rki4obp0k" path="res://scenes/character.tscn" id="2_olpmc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e05a3"]
+size = Vector2(35, 589)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e05a3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl4x5"]
+size = Vector2(41, 700)
+
+[node name="Arena" type="Node2D" unique_id=359714083]
+script = ExtResource("1_wl4x5")
+
+[node name="CharacterBody2D" parent="." unique_id=78127989 instance=ExtResource("2_olpmc")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=754208300]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=711151663]
+position = Vector2(-237, 1)
+shape = SubResource("RectangleShape2D_e05a3")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D" unique_id=51105493]
+position = Vector2(-1, 0)
+scale = Vector2(34.999992, 589.00006)
+mesh = SubResource("QuadMesh_e05a3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=563955881]
+position = Vector2(233, 1)
+shape = SubResource("RectangleShape2D_e05a3")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D2" unique_id=735767245]
+scale = Vector2(34.999992, 589.00006)
+mesh = SubResource("QuadMesh_e05a3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=400008915]
+position = Vector2(0, -135)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_wl4x5")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D3" unique_id=1030303420]
+position = Vector2(-0.5, 2.1856067e-08)
+scale = Vector2(41.596, 700)
+mesh = SubResource("QuadMesh_e05a3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=359480247]
+position = Vector2(0, 135)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_wl4x5")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D4" unique_id=1651043325]
+position = Vector2(0.5, -2.1856067e-08)
+scale = Vector2(41.596, 700)
+mesh = SubResource("QuadMesh_e05a3")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2072989866]
+limit_enabled = false
+limit_left = -150
+limit_top = -150
+limit_right = 150
+limit_bottom = 150
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 0.1

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cb71rki4obp0k"]
+
+[ext_resource type="Script" uid="uid://bggcd8kwd3vil" path="res://scripts/character.gd" id="1_agfs1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olpmc"]
+size = Vector2(9, 9)
+
+[node name="character" type="CharacterBody2D" unique_id=78127989]
+collision_layer = 2
+script = ExtResource("1_agfs1")
+is_leader = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1189730683]
+shape = SubResource("RectangleShape2D_olpmc")
+
+[node name="Timer" type="Timer" parent="." unique_id=8458072]
+wait_time = 0.00999999999999999
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

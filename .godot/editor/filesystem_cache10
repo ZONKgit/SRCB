@@ -1,0 +1,11 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1771152773
+devlog.md::TextFile::-1::1771153128::0::1::::<><><>0<>0<><>::
+icon.svg::CompressedTexture2D::3919417468463641185::1771057488::1771057500::1::::<><><>0<>0<>de58fb57e08c149f765aeedca840736d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://scenes/::1771153743
+arena.tscn::PackedScene::1424018478024718137::1771147182::0::1::::<><><>0<>0<><>::uid://bqh087hcsm6mb::::res://scripts/arena.gd<>uid://cb71rki4obp0k::::res://scenes/character.tscn
+character.tscn::PackedScene::4910699838390788896::1771154008::0::1::::<><><>0<>0<><>::uid://bggcd8kwd3vil::::res://scripts/playerCharacterBody.gd
+::res://scripts/::1771153743
+player.gd::GDScript::1789493763801973294::1771103084::0::1::::<>Node2D<><>0<>0<><>::
+playerCharacterBody.gd::GDScript::2820068553136213951::1771147711::0::1::::<>CharacterBody2D<><>0<>0<><>::
+arena.gd::GDScript::3525471373874329109::1771153743::0::1::::<>Node2D<><>0<>0<><>::

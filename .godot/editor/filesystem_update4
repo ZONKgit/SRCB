@@ -1,0 +1,6 @@
+res://scenes/arena.tscn
+res://scripts/playerCharacterBody.gd
+res://scripts/arena.gd
+res://scenes/character.tscn
+res://scripts/global.gd
+res://scripts/character.gd

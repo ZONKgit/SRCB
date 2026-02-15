@@ -1,0 +1,20 @@
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+*.import
+*.tscn~
+*.godotimport
+addons/
+
+# Mono-specific ignores (если используешь C#)
+.mono/
+*.csproj.user
+*.sln
+
+# General
+Thumbs.db
+.DS_Store
+*.swp
+*.bak
+*.tmp
