@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://cb71rki4obp0k"]
 
 [ext_resource type="Script" uid="uid://bggcd8kwd3vil" path="res://scripts/character.gd" id="1_agfs1"]
+[ext_resource type="Shader" uid="uid://wvmcux88ek3h" path="res://assets/shaders/shadow.gdshader" id="2_lrhn5"]
+[ext_resource type="Texture2D" uid="uid://jltuk8l8kj6o" path="res://assets/sprites/char.png" id="2_rkhd4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olpmc"]
 size = Vector2(9, 9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrhn5"]
+shader = ExtResource("2_lrhn5")
+shader_parameter/tint_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/alpha_multiplier = 0.5
 
 [node name="character" type="CharacterBody2D" unique_id=78127989]
 collision_layer = 2
@@ -11,10 +18,14 @@ script = ExtResource("1_agfs1")
 is_leader = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1189730683]
+visible = false
 shape = SubResource("RectangleShape2D_olpmc")
 
-[node name="Timer" type="Timer" parent="." unique_id=8458072]
-wait_time = 0.00999999999999999
-autostart = true
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=264094551]
+texture = ExtResource("2_rkhd4")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="shadow" type="Sprite2D" parent="Sprite2D" unique_id=467233998]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_lrhn5")
+position = Vector2(2, 2)
+texture = ExtResource("2_rkhd4")

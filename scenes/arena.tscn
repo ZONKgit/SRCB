@@ -14,6 +14,13 @@ size = Vector2(41, 700)
 [node name="Arena" type="Node2D" unique_id=359714083]
 script = ExtResource("1_wl4x5")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1510049317]
+offset_left = -598.0
+offset_top = -268.0
+offset_right = 459.0
+offset_bottom = 402.0
+color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+
 [node name="CharacterBody2D" parent="." unique_id=78127989 instance=ExtResource("2_olpmc")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=754208300]
@@ -23,6 +30,7 @@ position = Vector2(-237, 1)
 shape = SubResource("RectangleShape2D_e05a3")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D" unique_id=51105493]
+modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
 position = Vector2(-1, 0)
 scale = Vector2(34.999992, 589.00006)
 mesh = SubResource("QuadMesh_e05a3")
@@ -32,6 +40,7 @@ position = Vector2(233, 1)
 shape = SubResource("RectangleShape2D_e05a3")
 
 [node name="MeshInstance2D2" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D2" unique_id=735767245]
+modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
 scale = Vector2(34.999992, 589.00006)
 mesh = SubResource("QuadMesh_e05a3")
 
@@ -41,11 +50,13 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_wl4x5")
 
 [node name="MeshInstance2D4" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D3" unique_id=1030303420]
+modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
 position = Vector2(-0.5, 2.1856067e-08)
 scale = Vector2(41.596, 700)
 mesh = SubResource("QuadMesh_e05a3")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=359480247]
+modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
 position = Vector2(0, 135)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_wl4x5")
