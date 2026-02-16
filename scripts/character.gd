@@ -4,20 +4,23 @@ class_name Char
 @onready var sprite = $Sprite2D
 @onready var shadow = $Sprite2D/shadow
 
-@export var speed: float = 120.0
+@export var speed: float =  120.0
 @export var is_leader: bool = false
 
 var previous_positions: Array[Dictionary] = []  # [{pos: Vector2, rot: float}]
 var followers: Array[Node2D] = []
 
 var impact_tween: Tween
+var hit_tween: Tween
 
 func _ready() -> void:
 	if is_leader: G.leader = self
 
-# Тень
-func _process(delta: float) -> void:
-	shadow.global_position = sprite.global_position + Vector2(2, 2)
+func flash_effect():
+	if hit_tween: hit_tween.kill()
+	hit_tween = create_tween()
+	modulate = Color.WHITE * 10 # Яркая вспышка
+	hit_tween.tween_property(self, "modulate", Color.WHITE, 0.25)
 
 func _physics_process(delta: float) -> void:
 	if is_leader:
@@ -38,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		velocity = original_velocity.bounce(collision.get_normal())
 		rotation = velocity.angle()
 
+
 		# ─── Быстрый hit-feedback ───
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_BACK)
@@ -54,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			G.play_sound(G.sounds["collide_wall"], r + get_my_snake_index()*0.05, -20)
 			G.play_sound(G.sounds["pop1"], r + get_my_snake_index()*0.025, -40)
+		flash_effect()
 
 func get_my_snake_index() -> int:
 	if is_leader:

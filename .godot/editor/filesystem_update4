@@ -1,0 +1,6 @@
+res://scenes/character.tscn
+res://assets/shaders/shadow.gdshader
+res://scenes/arena.tscn
+res://scripts/unit.gd
+res://scripts/character.gd
+res://scripts/utils/sprite.gd

@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1771237067
+::res://::1771241081
 devlog.md::TextFile::-1::1771158349::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::3919417468463641185::1771057488::1771057500::1::::<><><>0<>0<>de58fb57e08c149f765aeedca840736d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile::-1::1771155341::0::1::::<><><>0<>0<><>::
@@ -9,8 +9,8 @@ FatPixelFont.ttf::FontFile::2578850696752646016::1654974899::1771164496::1::::<>
 fonts_go_here.txt::TextFile::-1::1654974899::0::1::::<><><>0<>0<><>::
 PixulBrush-Mono.ttf::FontFile::5374683320089768282::1654974899::1771164496::1::::<><><>0<>0<>806adaf9765d189299d5e037241cca84<>res://.godot/imported/PixulBrush-Mono.ttf-63128fa2db773581b7edadd98741c694.fontdata::
 PixulBrush.ttf::FontFile::7169236858312512873::1654974899::1771164496::1::::<><><>0<>0<>dd468fd1778774e447e77844f1134b71<>res://.godot/imported/PixulBrush.ttf-5cea64955c24a807b43b507cd858595f.fontdata::
-::res://assets/shaders/::1771172400
-shadow.gdshader::Shader::1588239755914117367::1771172400::0::1::::<><><>0<>0<><>::
+::res://assets/shaders/::1771240503
+shadow.gdshader::Shader::1588239755914117367::1771240503::0::1::::<><><>0<>0<><>::
 ::res://assets/sounds/::1771164716
 80921__justinbw__buttonchime02up.ogg::AudioStreamOggVorbis::3763674928216477478::1654974899::1771164715::1::::<><><>0<>0<>ffe9ee527bf943bc8ee21d3fa374c4b1<>res://.godot/imported/80921__justinbw__buttonchime02up.ogg-7107da0952e53a018045d5dfd5a9a300.oggvorbisstr::
 258269__jcallison__mouth-pop.ogg::AudioStreamOggVorbis::4887094821196600570::1654974899::1771164715::1::::<><><>0<>0<>dc1dacbf0dd1484df444f3f0eb32654c<>res://.godot/imported/258269__jcallison__mouth-pop.ogg-de3d1e6aebe71b864aaea5079acff1d4.oggvorbisstr::
@@ -128,9 +128,11 @@ Wolf barks 5.ogg::AudioStreamOggVorbis::2404417970420667922::1654974899::1771164
 Wood Heavy 5.ogg::AudioStreamOggVorbis::1689809256844694124::1654974899::1771164714::1::::<><><>0<>0<>d04535be040883c9f282d5865dd1ec91<>res://.godot/imported/Wood Heavy 5.ogg-8e57f112a1faabe577e4e6dc25c5e449.oggvorbisstr::
 ::res://assets/sprites/::1771172164
 char.png::CompressedTexture2D::655597663533950160::1771172162::1771172164::1::::<><><>0<>0<>ea06e01ef065e5b1d01753b01fee166e<>res://.godot/imported/char.png-774a593d75062b7ba0c4efc235a7df5b.ctex::
-::res://scenes/::1771179853
+::res://devlog/::1771241106
+1.png::CompressedTexture2D::4359757985028829542::1771241106::1771241110::1::::<><><>0<>0<>2e133bc6ed2b80347128bec5ff8a125e<>res://.godot/imported/1.png-9454168e9fa4a67fda379c7ca1f89c3c.ctex::
+::res://scenes/::1771240503
 arena.tscn::PackedScene::1424018478024718137::1771172060::0::1::::<><><>0<>0<><>::uid://bqh087hcsm6mb::::res://scripts/arena.gd<>uid://cb71rki4obp0k::::res://scenes/character.tscn
-character.tscn::PackedScene::4910699838390788896::1771179853::0::1::::<><><>0<>0<><>::uid://bggcd8kwd3vil::::res://scripts/character.gd<>uid://wvmcux88ek3h::::res://assets/shaders/shadow.gdshader<>uid://jltuk8l8kj6o::::res://assets/sprites/char.png
+character.tscn::PackedScene::4910699838390788896::1771240503::0::1::::<><><>0<>0<><>::uid://bggcd8kwd3vil::::res://scripts/character.gd<>uid://wvmcux88ek3h::::res://assets/shaders/shadow.gdshader<>uid://jltuk8l8kj6o::::res://assets/sprites/char.png
 ::res://scripts/::1771179841
 arena.gd::GDScript::3525471373874329109::1771154221::0::1::::Arena<>Node2D<><>0<>0<><>::
 character.gd::GDScript::2820068553136213951::1771172871::0::1::::Char<>CharacterBody2D<><>0<>0<><>::

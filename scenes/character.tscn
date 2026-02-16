@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bggcd8kwd3vil" path="res://scripts/character.gd" id="1_agfs1"]
 [ext_resource type="Shader" uid="uid://wvmcux88ek3h" path="res://assets/shaders/shadow.gdshader" id="2_lrhn5"]
 [ext_resource type="Texture2D" uid="uid://jltuk8l8kj6o" path="res://assets/sprites/char.png" id="2_rkhd4"]
+[ext_resource type="Script" uid="uid://b7tfc3ms0c1h0" path="res://scripts/utils/sprite.gd" id="3_my7n2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olpmc"]
 size = Vector2(9, 9)
@@ -21,8 +22,11 @@ is_leader = true
 visible = false
 shape = SubResource("RectangleShape2D_olpmc")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=264094551]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1134901202]
+modulate = Color(0.59607846, 1, 0.4117647, 1)
 texture = ExtResource("2_rkhd4")
+script = ExtResource("3_my7n2")
+metadata/_custom_type_script = "uid://b7tfc3ms0c1h0"
 
 [node name="shadow" type="Sprite2D" parent="Sprite2D" unique_id=467233998]
 show_behind_parent = true
