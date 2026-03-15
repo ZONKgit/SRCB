@@ -1,8 +1,10 @@
 # DungeonGenerator.gd
 # Подходит для Godot 4.3 / 4.4 с TileMapLayer
 # Генерация комнат в стиле The Binding of Isaac
-
+class_name DungeonGenerator
 extends Node2D
+
+signal dungeon_generated
 
 @export var tilemap_layer: TileMapLayer
 
@@ -29,6 +31,13 @@ extends Node2D
 var rooms: Array = []  # 2D массив bool
 var start_room_grid_pos: Vector2i = Vector2i.ZERO
 
+var current_room: Vector2i = Vector2i(-1, -1)
+var room_doors: Dictionary = {}  # Vector2i -> Array[Door]
+
+var cleared_rooms: Array[Vector2i] = []
+
+signal room_entered(room_grid: Vector2i)
+
 func _ready() -> void:
 	await get_tree().process_frame     # ждём один кадр
 	generate_dungeon()
@@ -36,9 +45,15 @@ func _ready() -> void:
 	G.leader.global_position = get_start_world_position()
 	G.leader.get_node("Camera2D").position_smoothing_enabled = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var center = get_room_world_center(get_player_room_grid())
 	$"../Camera2D".global_position = center
+
+	# Отслеживание смены комнаты
+	var room = get_player_room_grid()
+	if room != current_room:
+		current_room = room
+		room_entered.emit(current_room)
 
 func generate_dungeon() -> void:
 	if not tilemap_layer:
@@ -54,6 +69,7 @@ func generate_dungeon() -> void:
 	merge_shared_walls()
 
 	print("Генерация завершена. Комнат: ", count_rooms())
+	dungeon_generated.emit()
 
 func clear_map() -> void:
 	tilemap_layer.clear()
@@ -253,45 +269,39 @@ func carve_doors() -> void:
 
 
 func place_door_nodes() -> void:
-	var door_scene = preload("res://scenes/Door.tscn")  # ← путь к твоей сцене Door.tscn
+	var door_scene = preload("res://scenes/Door.tscn")
 
-	# Горизонтальные двери (между комнатами слева-справа)
 	for gy in grid_height:
 		for gx in range(grid_width - 1):
 			if rooms[gy][gx] and rooms[gy][gx + 1]:
 				var left_offset = get_room_pixel_offset(Vector2i(gx, gy))
-
-				var door_x = left_offset.x + room_width - 1
-				var door_y_center = left_offset.y + (room_height - 1) / 2
-
-				var door_pos = Vector2i(door_x, door_y_center)
+				var door_pos = Vector2i(left_offset.x + room_width - 1, left_offset.y + (room_height - 1) / 2)
 
 				var door = door_scene.instantiate() as Door
 				add_child(door)
-
 				door.global_position = tilemap_layer.map_to_local(door_pos)
-				door.global_rotation = PI / 2
+				door.rotation_degrees = 90
 
-				# Центрируем по вертикали под размер двери
-				#door.global_position.y += (door_size * tilemap_layer.tile_set.tile_size.y) / 2.0
-				# Можно сдвинуть по x на полтайла, если дверь визуально не по центру
-				
-				# Сохраняем ссылку, если хочешь потом управлять (например по координатам комнаты)
-				#door.global_position.x -= tilemap_layer.tile_set.tile_size.x / 2   # пример центрирования
-	# Вертикальные двери
+				_register_door(door, Vector2i(gx, gy))
+				_register_door(door, Vector2i(gx + 1, gy))
+
 	for gx in grid_width:
 		for gy in range(grid_height - 1):
 			if rooms[gy][gx] and rooms[gy + 1][gx]:
 				var upper_offset = get_room_pixel_offset(Vector2i(gx, gy))
-
-				var door_y = upper_offset.y + room_height - 1
-				var door_x_center = upper_offset.x + (room_width - 1) / 2
-
-				var door_pos = Vector2i(door_x_center, door_y)
+				var door_pos = Vector2i(upper_offset.x + (room_width - 1) / 2, upper_offset.y + room_height - 1)
 
 				var door = door_scene.instantiate() as Door
 				add_child(door)
 				door.global_position = tilemap_layer.map_to_local(door_pos)
+
+				_register_door(door, Vector2i(gx, gy))
+				_register_door(door, Vector2i(gx, gy + 1))
+
+func _register_door(door: Door, room: Vector2i) -> void:
+	if not room_doors.has(room):
+		room_doors[room] = []
+	room_doors[room].append(door)
 
 
 # ────────────────────────────────────────────────
@@ -315,6 +325,44 @@ func get_room_world_center(grid_pos: Vector2i) -> Vector2:
 	var offset = get_room_pixel_offset(grid_pos)
 	var center_tile = offset + Vector2i(room_width / 2, room_height / 2)
 	return tilemap_layer.map_to_local(center_tile)
+
+func set_room_doors_open(room: Vector2i, open: bool) -> void:
+	if not room_doors.has(room): return
+	for door in room_doors[room]:
+		if open:
+			door.open()
+		else:
+			door.close()
+
+
+func is_whole_snake_in_room(room: Vector2i, margin: float = 8.0) -> bool:
+	var tile_size: Vector2 = tilemap_layer.tile_set.tile_size
+	var room_center = get_room_world_center(room)
+	
+	# Границы внутренней области комнаты с отступом
+	var half_w = (room_width  - 2) * tile_size.x / 2.0 - margin
+	var half_h = (room_height - 2) * tile_size.y / 2.0 - margin
+	
+	var bounds = Rect2(
+		room_center - Vector2(half_w, half_h),
+		Vector2(half_w, half_h) * 2.0
+	)
+	
+	if not bounds.has_point(G.leader.global_position):
+		return false
+	
+	for follower in G.leader.followers:
+		if not bounds.has_point(follower.global_position):
+			return false
+	
+	return true
+
+func is_room_cleared(room: Vector2i) -> bool:
+	return room in cleared_rooms
+
+func mark_room_cleared(room: Vector2i) -> void:
+	if room not in cleared_rooms:
+		cleared_rooms.append(room)
 
 # Пример использования:
 # func spawn_player(player: Node2D) -> void:

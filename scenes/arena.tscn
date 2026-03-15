@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b1j7mymenbkhc" path="res://scenes/Seeker.tscn" id="3_dpxgc"]
 [ext_resource type="Texture2D" uid="uid://caphwnp8j183c" path="res://assets/sprites/tilemap.png" id="4_7ft05"]
 [ext_resource type="Script" uid="uid://dt7ilyn0be085" path="res://scripts/generator/DungeonGenerator.gd" id="5_7ft05"]
+[ext_resource type="PackedScene" uid="uid://fwinhjulk33x" path="res://scenes/MiniMap.tscn" id="6_4ag8t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ag8t"]
 texture = ExtResource("4_7ft05")
@@ -51,3 +52,16 @@ tilemap_layer = NodePath("Layer0")
 [node name="Layer0" type="TileMapLayer" parent="DungeonGenerator" unique_id=1180217591]
 use_parent_material = true
 tile_set = SubResource("TileSet_dpxgc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1599357947]
+
+[node name="MiniMap" parent="CanvasLayer" unique_id=783795322 node_paths=PackedStringArray("dungeon") instance=ExtResource("6_4ag8t")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -77.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 1
+dungeon = NodePath("../../DungeonGenerator")
+visibility_radius = 2

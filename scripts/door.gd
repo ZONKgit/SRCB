@@ -1,7 +1,7 @@
 class_name Door
 extends StaticBody2D
 
-@export var is_open: bool = false :
+@export var is_open: bool = true :
 	set(value):
 		is_open = value
 		update_visual_and_collision()
@@ -27,11 +27,13 @@ func update_visual_and_collision() -> void:
 		# sprite.texture = open_texture
 		if anim: anim.play("open")
 		collision.disabled = true
+		sprite.visible = false
 		# можно добавить light_occluder_2d отключить и т.д.
 	else:
 		# sprite.texture = closed_texture
 		if anim: anim.play("closed")
 		collision.disabled = false
+		sprite.visible = true
 
 # Вызывай эти методы из другого кода
 func open() -> void:

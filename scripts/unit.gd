@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Unit
 
+signal died
+
 @onready var sprite = $Sprite2D
 
 var hp: float = 100.0
@@ -58,6 +60,7 @@ func flash_effect():
 
 func die():
 	is_dead = true
+	died.emit()
 	queue_free() # Или спавн частиц через G.arena
 
 

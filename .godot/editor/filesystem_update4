@@ -5,3 +5,8 @@ res://scenes/door.tscn
 res://scripts/door.gd
 res://scripts/arena.gd
 res://scenes/subs/SpawnEffect.tscn
+res://scripts/RoomState.gd
+res://scenes/Seeker.tscn
+res://scripts/unit.gd
+res://scenes/MiniMap.tscn
+res://scripts/gui/mini_map.gd
