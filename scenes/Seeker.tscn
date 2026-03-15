@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b1j7mymenbkhc"]
+
+[ext_resource type="Script" uid="uid://coewwbefngjhi" path="res://scripts/unit.gd" id="1_y4ve7"]
+[ext_resource type="Texture2D" uid="uid://jltuk8l8kj6o" path="res://assets/sprites/char.png" id="2_qpmu8"]
+[ext_resource type="Script" uid="uid://b7tfc3ms0c1h0" path="res://scripts/utils/sprite.gd" id="3_l5t3l"]
+[ext_resource type="Shader" uid="uid://wvmcux88ek3h" path="res://assets/shaders/shadow.gdshader" id="4_q7flw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ag8t"]
+size = Vector2(9, 9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpxgc"]
+shader = ExtResource("4_q7flw")
+shader_parameter/tint_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/alpha_multiplier = 0.5
+
+[node name="CharacterBody2D2" type="CharacterBody2D" unique_id=1811645209]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_y4ve7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1554121521]
+shape = SubResource("RectangleShape2D_4ag8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1614155577]
+modulate = Color(0.9137255, 0.11372549, 0.22352941, 1)
+texture = ExtResource("2_qpmu8")
+script = ExtResource("3_l5t3l")
+
+[node name="shadow" type="Sprite2D" parent="Sprite2D" unique_id=1359923892]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_dpxgc")
+position = Vector2(2, 2)
+texture = ExtResource("2_qpmu8")

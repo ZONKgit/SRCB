@@ -1,4 +1,7 @@
-res://scripts/utils/
 res://scripts/
-res://assets/shaders/
+res://scripts/generator/
+res://assets/sprites/
+res://scenes/subs/
+res://scripts/utils/
 res://scenes/
+res://assets/shaders/

@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://dgp536d6febb7"]
+
+[ext_resource type="Script" uid="uid://im5cny1aos4o" path="res://scripts/utils/SpawnEffect.gd" id="1_uo1jr"]
+[ext_resource type="Texture2D" uid="uid://dj201o30624wu" path="res://assets/particles/circle16.png" id="2_s7ow8"]
+[ext_resource type="Texture2D" uid="uid://f4ajaqeuqks6" path="res://assets/particles/circle8.png" id="3_sknhl"]
+
+[sub_resource type="Curve" id="Curve_4ag8t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19594595, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dpxgc"]
+curve = SubResource("Curve_4ag8t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ag8t"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_dpxgc")
+
+[sub_resource type="Curve" id="Curve_oexds"]
+_data = [Vector2(0.4391892, 0), 0.0, 0.24250966, 0, 0, Vector2(0.5472973, 0.97752815), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_naajo"]
+curve = SubResource("Curve_oexds")
+
+[sub_resource type="Curve" id="Curve_dpxgc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.32432434, 1), 0.0, 0.0, 0, 0, Vector2(0.43243247, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_oexds"]
+curve = SubResource("Curve_dpxgc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_naajo"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+damping_min = 30.769001
+damping_max = 30.769001
+damping_curve = SubResource("CurveTexture_naajo")
+scale_min = 0.19999999
+scale_max = 0.59999996
+scale_curve = SubResource("CurveTexture_oexds")
+color = Color(0.8980392, 0.23137255, 0.3764706, 1)
+
+[sub_resource type="Animation" id="Animation_4ag8t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BurstParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RingEffect:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dpxgc"]
+resource_name = "spawn_effect"
+length = 6.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BurstParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RingEffect:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_now"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oexds"]
+_data = {
+&"RESET": SubResource("Animation_4ag8t"),
+&"spawn_effect": SubResource("Animation_dpxgc")
+}
+
+[node name="Node2D" type="Node2D" unique_id=1222334457]
+script = ExtResource("1_uo1jr")
+
+[node name="RingEffect" type="GPUParticles2D" parent="." unique_id=1763010670]
+amount = 1
+texture = ExtResource("2_s7ow8")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4ag8t")
+
+[node name="BurstParticles" type="GPUParticles2D" parent="." unique_id=1206353868]
+amount = 20
+texture = ExtResource("3_sknhl")
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_naajo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=843820568]
+libraries/ = SubResource("AnimationLibrary_oexds")

@@ -2,84 +2,37 @@
 
 [ext_resource type="Script" uid="uid://bqh087hcsm6mb" path="res://scripts/arena.gd" id="1_wl4x5"]
 [ext_resource type="PackedScene" uid="uid://cb71rki4obp0k" path="res://scenes/character.tscn" id="2_olpmc"]
-[ext_resource type="Script" uid="uid://coewwbefngjhi" path="res://scripts/unit.gd" id="3_olpmc"]
-[ext_resource type="Texture2D" uid="uid://jltuk8l8kj6o" path="res://assets/sprites/char.png" id="4_xdvfk"]
-[ext_resource type="Script" uid="uid://b7tfc3ms0c1h0" path="res://scripts/utils/sprite.gd" id="5_4ag8t"]
-[ext_resource type="Shader" uid="uid://wvmcux88ek3h" path="res://assets/shaders/shadow.gdshader" id="5_7ft05"]
+[ext_resource type="PackedScene" uid="uid://b1j7mymenbkhc" path="res://scenes/Seeker.tscn" id="3_dpxgc"]
+[ext_resource type="Texture2D" uid="uid://caphwnp8j183c" path="res://assets/sprites/tilemap.png" id="4_7ft05"]
+[ext_resource type="Script" uid="uid://dt7ilyn0be085" path="res://scripts/generator/DungeonGenerator.gd" id="5_7ft05"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e05a3"]
-size = Vector2(35, 589)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ag8t"]
+texture = ExtResource("4_7ft05")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
 
-[sub_resource type="QuadMesh" id="QuadMesh_e05a3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl4x5"]
-size = Vector2(41, 700)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ag8t"]
-size = Vector2(9, 9)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpxgc"]
-shader = ExtResource("5_7ft05")
-shader_parameter/tint_color = Color(0.1, 0.1, 0.1, 1)
-shader_parameter/alpha_multiplier = 0.5
+[sub_resource type="TileSet" id="TileSet_dpxgc"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_4ag8t")
 
 [node name="Arena" type="Node2D" unique_id=359714083]
 script = ExtResource("1_wl4x5")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1510049317]
-offset_left = -598.0
-offset_top = -268.0
-offset_right = 459.0
-offset_bottom = 402.0
-color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+offset_left = -808.0
+offset_top = -601.0
+offset_right = 4294.0
+offset_bottom = 2171.0
+color = Color(0.1882353, 0.1882353, 0.1882353, 1)
 
 [node name="CharacterBody2D" parent="." unique_id=78127989 instance=ExtResource("2_olpmc")]
 position = Vector2(176, 0)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=754208300]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=711151663]
-position = Vector2(-237, 1)
-shape = SubResource("RectangleShape2D_e05a3")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D" unique_id=51105493]
-modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
-position = Vector2(-1, 0)
-scale = Vector2(34.999992, 589.00006)
-mesh = SubResource("QuadMesh_e05a3")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=563955881]
-position = Vector2(233, 1)
-shape = SubResource("RectangleShape2D_e05a3")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D2" unique_id=735767245]
-modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
-scale = Vector2(34.999992, 589.00006)
-mesh = SubResource("QuadMesh_e05a3")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=400008915]
-position = Vector2(0, -135)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_wl4x5")
-
-[node name="MeshInstance2D4" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D3" unique_id=1030303420]
-modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
-position = Vector2(-0.5, 2.1856067e-08)
-scale = Vector2(41.596, 700)
-mesh = SubResource("QuadMesh_e05a3")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=359480247]
-modulate = Color(0.1882353, 0.1882353, 0.1882353, 1)
-position = Vector2(0, 135)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_wl4x5")
-
-[node name="MeshInstance2D3" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D4" unique_id=1651043325]
-position = Vector2(0.5, -2.1856067e-08)
-scale = Vector2(41.596, 700)
-mesh = SubResource("QuadMesh_e05a3")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2072989866]
+position = Vector2(474, 257)
 limit_enabled = false
 limit_left = -150
 limit_top = -150
@@ -87,204 +40,14 @@ limit_right = 150
 limit_bottom = 150
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 0.1
 
-[node name="CharacterBody2D2" type="CharacterBody2D" parent="." unique_id=1621344690]
+[node name="CharacterBody2D2" parent="." unique_id=1811645209 instance=ExtResource("3_dpxgc")]
 position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2" unique_id=1506560384]
-shape = SubResource("RectangleShape2D_4ag8t")
+[node name="DungeonGenerator" type="Node2D" parent="." unique_id=919629445 node_paths=PackedStringArray("tilemap_layer")]
+script = ExtResource("5_7ft05")
+tilemap_layer = NodePath("Layer0")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2" unique_id=638444357]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D2/Sprite2D" unique_id=1720341187]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D3" type="CharacterBody2D" parent="." unique_id=782675299]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D3" unique_id=1762176215]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D3" unique_id=1936431979]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D3/Sprite2D" unique_id=997190385]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D4" type="CharacterBody2D" parent="." unique_id=1250967235]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D4" unique_id=1742023068]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D4" unique_id=1580284553]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D4/Sprite2D" unique_id=1668149180]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D5" type="CharacterBody2D" parent="." unique_id=2096128800]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D5" unique_id=700309439]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D5" unique_id=1784233756]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D5/Sprite2D" unique_id=2063093357]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D6" type="CharacterBody2D" parent="." unique_id=1928168764]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D6" unique_id=1078062378]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D6" unique_id=2084234033]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D6/Sprite2D" unique_id=1959280587]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D7" type="CharacterBody2D" parent="." unique_id=883547448]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D7" unique_id=831989605]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D7" unique_id=613334991]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D7/Sprite2D" unique_id=822363654]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D8" type="CharacterBody2D" parent="." unique_id=1481079693]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D8" unique_id=909651201]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D8" unique_id=887030896]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D8/Sprite2D" unique_id=886623322]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D9" type="CharacterBody2D" parent="." unique_id=775133990]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D9" unique_id=1288029305]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D9" unique_id=29351655]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D9/Sprite2D" unique_id=178719703]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D10" type="CharacterBody2D" parent="." unique_id=2098851349]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D10" unique_id=233132806]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D10" unique_id=458568569]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D10/Sprite2D" unique_id=324908260]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
-
-[node name="CharacterBody2D11" type="CharacterBody2D" parent="." unique_id=1529933925]
-position = Vector2(-208, 0)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("3_olpmc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D11" unique_id=652944969]
-shape = SubResource("RectangleShape2D_4ag8t")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D11" unique_id=903874551]
-modulate = Color(0.89652693, 0.23174688, 0.37539935, 1)
-texture = ExtResource("4_xdvfk")
-script = ExtResource("5_4ag8t")
-
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D11/Sprite2D" unique_id=133383282]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_dpxgc")
-position = Vector2(2, 2)
-texture = ExtResource("4_xdvfk")
+[node name="Layer0" type="TileMapLayer" parent="DungeonGenerator" unique_id=1180217591]
+use_parent_material = true
+tile_set = SubResource("TileSet_dpxgc")

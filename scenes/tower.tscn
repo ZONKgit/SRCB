@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bnabkfr8v4eys"]
+
+[ext_resource type="Texture2D" uid="uid://efdte75srt3k" path="res://assets/sprites/tower.png" id="1_ay4al"]
+[ext_resource type="Script" uid="uid://0h37c56j810m" path="res://scripts/tower.gd" id="1_ktxwe"]
+[ext_resource type="Script" uid="uid://b7tfc3ms0c1h0" path="res://scripts/utils/sprite.gd" id="2_ktxwe"]
+[ext_resource type="Shader" uid="uid://wvmcux88ek3h" path="res://assets/shaders/shadow.gdshader" id="4_qrbg1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfguu"]
+shader = ExtResource("4_qrbg1")
+shader_parameter/tint_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/alpha_multiplier = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrbg1"]
+size = Vector2(16, 16)
+
+[node name="Tower" type="StaticBody2D" unique_id=214529638]
+script = ExtResource("1_ktxwe")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1970818535]
+texture = ExtResource("1_ay4al")
+script = ExtResource("2_ktxwe")
+metadata/_custom_type_script = "uid://b7tfc3ms0c1h0"
+
+[node name="shadow" type="Sprite2D" parent="Sprite" unique_id=1254353910]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_jfguu")
+position = Vector2(2, 2)
+texture = ExtResource("1_ay4al")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2105235909]
+shape = SubResource("RectangleShape2D_qrbg1")

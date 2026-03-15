@@ -33,3 +33,9 @@ show_behind_parent = true
 material = SubResource("ShaderMaterial_lrhn5")
 position = Vector2(2, 2)
 texture = ExtResource("2_rkhd4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1211288019]
+enabled = false
+limit_enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
